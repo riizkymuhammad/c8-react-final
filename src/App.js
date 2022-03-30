@@ -2,37 +2,28 @@ import React from 'react';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
   Grid,
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import Home from './pages/Home';
+import { Routes, Route } from 'react-router-dom';
+import RegisterPage from './pages/RegisterPage';
+import Navbar from './components/Navbar';
+import EditPlayer from './pages/EditPlayer';
+import PencarianPlayer from './pages/PencarianPlayer';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/player/edit" element={<EditPlayer />} />
+            <Route path="/player/cari" element={<PencarianPlayer />} />
+          </Routes>
         </Grid>
       </Box>
     </ChakraProvider>
